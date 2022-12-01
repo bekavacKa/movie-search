@@ -2,7 +2,8 @@
 @import './Assets/scss/resets.scss';
 
 body{
-    background-color: $firstBackColor;
+    background: $firstBackColor;
     color: $firstFontColor;
     font-size: 16px;
+    font-family: $firstFontF;
 }

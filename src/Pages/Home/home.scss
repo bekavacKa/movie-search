@@ -1,0 +1,33 @@
+@import '../../Assets/scss/variables.scss';
+@import '../../Assets/scss/mixins.scss';
+
+.home{
+    @include my-container;
+    @include my-flex(center, column, center);
+    h2{
+        text-transform: uppercase;
+        letter-spacing: .2rem;
+        font-family: $secondFontF;
+        font-size: 2.5rem;
+        text-shadow: 0 0 8px black;
+    }
+    .home-search{
+        @include my-input-style;
+        margin: 20px 0;
+    }
+    .home-btns{
+        .btn{
+            @include my-btn-style;
+            width: 250px;
+            &.movie{
+                border-radius: 15px 0 0 15px ;
+            }
+            &.tv{
+                border-radius: 0 15px 15px 0;
+            }
+            &.active{
+                background-color: rgba(27, 27, 27, 0.5);
+            }
+        }
+    }
+}

@@ -1,7 +1,37 @@
+@import './variables.scss';
+
 @mixin my-flex($justify, $direction, $align){
     display: flex;
     flex-wrap: wrap;
     justify-content: $justify;
     flex-direction: $direction;
     align-items: $align;
+}
+
+@mixin my-container{
+    width: 80%;
+    margin: auto;
+    padding: 50px;
+}
+
+@mixin my-input-style {
+    border: 1px solid $firstBackColor;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+@mixin my-btn-style {
+    padding: 15px 30px;
+    text-transform: uppercase;
+    background: rgba(233, 236, 233, 0.5);
+    border-radius: 5px;
+    border: 1px solid $firstFontColor;
+    letter-spacing: .2rem;
+    transition: $transition;
+    cursor: pointer;
+    &:hover{
+        background: rgba(27, 27, 27, 0.5);
+    }
 }
