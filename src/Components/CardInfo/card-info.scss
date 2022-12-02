@@ -3,17 +3,22 @@
 
 .card-info{
     background-color: $secondBackColor;
-    // border: 1px solid $firstFontColor;
     box-shadow: 0 0 5px 5px $firstFontColor;
     width: 250px;
     padding: 10px 10px 0;
     border-radius: 5px;
+    transition: $transition;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 0 0 5px 8px $firstFontColor;
+        transform: scale(1.02);
+    }
     @include my-flex(space-between, column, center);
     .card-info-image{
         @include my-flex(center, column, center);
         img{
             width: 100%;
-            border-radius: 5px 5px 0 0 ;
+            border-radius: 5px 5px 0 0;
         }
     }
     .card-info-title{
