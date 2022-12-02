@@ -4,30 +4,59 @@
 .home{
     @include my-container;
     @include my-flex(center, column, center);
-    h2{
-        text-transform: uppercase;
-        letter-spacing: .2rem;
-        font-family: $secondFontF;
-        font-size: 2.5rem;
-        text-shadow: 0 0 8px black;
+    .home-title{
+        h2{
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            font-family: $secondFontF;
+            font-size: 2.5rem;
+            text-shadow: 0 0 8px black;
+        }
     }
     .home-search{
         @include my-input-style;
         margin: 20px 0;
+        background-color: $firstFontColor;
+        width: 250px;
+        border-radius: 10px;
+        &::placeholder{
+            color: $firstBackColor;
+            text-align: center;
+        }
     }
     .home-btns{
+        padding: 20px 10px;
         .btn{
             @include my-btn-style;
             width: 250px;
             &.movie{
                 border-radius: 15px 0 0 15px ;
+                // border-right: none;
             }
             &.tv{
                 border-radius: 0 15px 15px 0;
+                // border-left: none;
+            }
+            &.top{
+                border: none;
+                background-color: rgba(27, 27, 27, 0.5);
+                color: $firstFontColor;
             }
             &.active{
                 background-color: rgba(27, 27, 27, 0.5);
+                box-shadow: 0 0 3px 3px $firstFontColor;
+                color: $firstFontColor;
+            }
+            &:hover{
+                color: $firstFontColor;
             }
         }
+    }
+    .home-content{
+        // background-color: red;
+        width: 100%;
+        margin: 20px 0;
+        @include my-flex(space-evenly, row, normal);
+        gap: 30px;
     }
 }

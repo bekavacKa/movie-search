@@ -26,10 +26,12 @@
     padding: 15px 30px;
     text-transform: uppercase;
     background: rgba(233, 236, 233, 0.5);
-    border-radius: 5px;
     border: 1px solid $firstFontColor;
     letter-spacing: .2rem;
     transition: $transition;
+    font-family: $firstFontF;
+    font-weight: 500;
+    font-size: 1rem;
     cursor: pointer;
     &:hover{
         background: rgba(27, 27, 27, 0.5);

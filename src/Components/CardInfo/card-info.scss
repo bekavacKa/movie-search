@@ -1,0 +1,25 @@
+@import '../../Assets/scss/variables.scss';
+@import '../../Assets/scss/mixins.scss';
+
+.card-info{
+    background-color: $secondBackColor;
+    // border: 1px solid $firstFontColor;
+    box-shadow: 0 0 5px 5px $firstFontColor;
+    width: 250px;
+    padding: 10px 10px 0;
+    border-radius: 5px;
+    @include my-flex(space-between, column, center);
+    .card-info-image{
+        @include my-flex(center, column, center);
+        img{
+            width: 100%;
+            border-radius: 5px 5px 0 0 ;
+        }
+    }
+    .card-info-title{
+        padding: 15px 5px;
+        h2{
+            text-transform: uppercase;
+        }
+    }
+}
