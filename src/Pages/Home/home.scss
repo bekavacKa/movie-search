@@ -37,18 +37,27 @@
                 border-radius: 0 15px 15px 0;
                 // border-left: none;
             }
-            &.top{
-                border: none;
-                background-color: rgba(27, 27, 27, 0.5);
-                color: $firstFontColor;
-            }
             &.active{
-                background-color: rgba(27, 27, 27, 0.5);
+                background-color: $thirdBackColor;
                 box-shadow: 0 0 3px 3px $firstFontColor;
-                color: $firstFontColor;
+                color: $secondBackColor;
             }
             &:hover{
-                color: $firstFontColor;
+                background-color: $thirdBackColor;
+            }
+        }
+        .top{
+            @include my-btn-style;
+            border: none;
+            background-color: rgba(27, 27, 27, 0.5);
+            color: $firstFontColor;
+            width: 250px;
+            cursor: default;
+            &:hover{
+                background-color: rgba(27, 27, 27, 0.5);
+            }
+            &.hide-top{
+                display: none;
             }
         }
     }

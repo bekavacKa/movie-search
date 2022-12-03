@@ -1,17 +1,28 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import './App.scss';
+import Loader from './Components/Loader/Loader';
 import routes from './Config/routes';
 import Home from './Pages/Home/Home';
 import MovieTvShowDetails from './Pages/MovieTvShowDetails/MovieTvShowDetails';
+import { store } from './Redux/store';
 
 function App() {
+
   return (
     <div className="App">
-      <Routes>
-        <Route path={routes.HOME.url} element={<Home />} />
-        <Route path={routes.DETAILS.url} element={<MovieTvShowDetails />} />
-      </Routes>
+      <Provider store={store} >
+        <Loader />
+
+        <BrowserRouter>
+          <Routes>
+            <Route path={routes.HOME.url} element={<Home />} />
+            <Route path={routes.DETAILS.url} element={<MovieTvShowDetails />} />
+          </Routes>
+        </BrowserRouter>
+        
+      </Provider>
     </div>
   );
 }
