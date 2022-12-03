@@ -5,7 +5,8 @@ const routes ={
     },
     DETAILS: {
         name: 'Details',
-        url: '/details'
+        url: '/details/:id',
+        completeUrl: (id: number) => `/details/${id}`
     }
 }
 
