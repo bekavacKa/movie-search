@@ -1,0 +1,6 @@
+@import '../../Assets/scss/mixins.scss';
+@import '../../Assets/scss/variables.scss';
+
+.card-details{
+    @include my-flex(center, column, center);
+}

@@ -39,7 +39,7 @@
             }
             &.active{
                 background-color: $thirdBackColor;
-                box-shadow: 0 0 3px 3px $firstFontColor;
+                box-shadow: 0 0 2px 2px $firstFontColor;
                 color: $secondBackColor;
             }
             &:hover{
@@ -52,6 +52,8 @@
             background-color: rgba(27, 27, 27, 0.5);
             color: $firstFontColor;
             width: 250px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: default;
             &:hover{
                 background-color: rgba(27, 27, 27, 0.5);

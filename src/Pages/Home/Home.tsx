@@ -50,10 +50,22 @@ function Home() {
   const [topTenTv, setTopTenTv] = useState<ITopTenTvShow[] | null>(null);
   const [topTenMovie, setTopTenMovie] = useState<ITopTenMovie[] | null>(null);
 
+  const [searchedItems, setSearchedItems] = useState<ITopTenMovie[] | null>(null);;
+
   useEffect(() => {
     getTopTvShows();
     getTopMovies();
   }, []);
+
+  useEffect(() => {
+    storeSearchTerm.length > 2 && setTimeout(()=> {
+      handleSearch();
+    }, 1000);
+  }, [storeSearchTerm]);
+
+  useEffect(() => {
+    storeSearchTerm.length > 2 && handleSearch();
+  }, [showTvShows]);
 
   const getTopTvShows = (): void => {
     dispatch(setLoader(true));
@@ -78,11 +90,46 @@ function Home() {
   const handleMovieClick = (): void => {
     setShowTvShows(false);
     setShowMovies(true);
-  }
+  };
 
   const handleTvShowsClick = (): void => {
     setShowMovies(false);
     setShowTvShows(true);
+  };
+
+  const handleSearch = (): void => {
+    if(showTvShows){
+      return searchTvShows();
+    }
+    if(showMovies){
+      return searchMovies();
+    }
+  }
+
+  const searchTvShows = (): void => {
+    dispatch(setLoader(true));
+    MovieTvService.searchTvShows(storeSearchTerm)
+                  .then(res => {
+                    // console.log(res.data);
+                    setSearchedItems(res.data.results)
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
+                  .finally(() => dispatch(setLoader(false)));
+  }
+
+  const searchMovies = (): void => {
+    dispatch(setLoader(true));
+    MovieTvService.searchMovie(storeSearchTerm)
+                  .then(res => {
+                    // console.log(res.data);
+                    setSearchedItems(res.data.results)
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
+                  .finally(() => dispatch(setLoader(false)));
   }
 
   return (
@@ -107,8 +154,9 @@ function Home() {
         <button className={`btn tv ${showTvShows && "active"}`} onClick={handleTvShowsClick} > TV Shows </button>
       </div>
 
+
       {
-        showTvShows ?
+        showTvShows && storeSearchTerm.length < 3 ?
         <div className="home-content">
           {
             topTenTv ? 
@@ -123,11 +171,43 @@ function Home() {
       }
 
       {
-        showMovies ?
+        showMovies && storeSearchTerm.length < 3 ?
         <div className="home-content">
           {
             topTenMovie ? 
             topTenMovie.map((item: ITopTenMovie, index) => {
+              return <CardInfo {...item} key={index}/>
+            })
+            :
+            null
+          }
+        </div>
+        :
+        null
+      }
+
+      {
+        showTvShows && searchedItems && storeSearchTerm.length >= 3 ?
+        <div className="home-content">
+          {
+            searchedItems ? 
+            searchedItems.map((item: ITopTenMovie, index) => {
+              return <CardInfo {...item} key={index}/>
+            })
+            :
+            null
+          }
+        </div>
+        :
+        null
+      }
+
+      {
+        showMovies && searchedItems && storeSearchTerm.length >= 3 ?
+        <div className="home-content">
+          {
+            searchedItems ? 
+            searchedItems.map((item: ITopTenMovie, index) => {
               return <CardInfo {...item} key={index}/>
             })
             :

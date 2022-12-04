@@ -4,6 +4,8 @@ import { useParams } from "react-router";
 import { setLoader } from "../../Redux/loaderSlice";
 import MovieTvService from "../../Services/MovieTvService";
 
+import './card-details.scss';
+
 interface IDetails {
   adult: boolean;
   backdrop_path: string;
@@ -28,6 +30,8 @@ interface IDetails {
   vote_count: number;
 }
 
+const imagePath: string = `https://www.themoviedb.org/t/p/w220_and_h330_face/`;
+
 const CardDetails: FC = () => {
   const params = useParams();
   const id = Number(params.id);
@@ -44,7 +48,7 @@ const CardDetails: FC = () => {
     dispatch(setLoader(true));
     MovieTvService.getTvShowDetails(id)
       .then((res) => {
-        console.log("ja",res.data);
+        // console.log(res.data);
         setDetails(res.data);
       })
       .catch((err) => {
@@ -56,7 +60,25 @@ const CardDetails: FC = () => {
 
   return (
     <div className="card-details">
-      {details?.name}
+
+      <div className="card-details-image">
+        {
+          details?.poster_path &&
+          <img src={`${imagePath + details?.poster_path}`} alt={details?.name} />
+        }
+        {
+          details?.backdrop_path &&
+          <img src={`${imagePath + details?.backdrop_path}`} alt={details?.name} />
+        }
+      </div>
+
+      <div className="card-details-title">
+        <h2>{details?.name}</h2>
+      </div>
+
+      <div className="card-details-title">
+        <p>{details?.overview}</p>
+      </div>
 
       {
         errMsg &&
