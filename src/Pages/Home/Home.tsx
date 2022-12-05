@@ -4,6 +4,7 @@ import CardInfo from "../../Components/CardInfo/CardInfo";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setStoreSearchTerm } from "../../Redux/searchTermSlice";
+import { setMovieButton, setTvShowsButton } from "../../Redux/buttonsSlice";
 import MovieTvService from "../../Services/MovieTvService";
 import { setLoader } from "../../Redux/loaderSlice";
 
@@ -44,8 +45,13 @@ function Home() {
     (state: any) => state.searchTermStore
   );
 
-  const [showMovies, setShowMovies] = useState<boolean>(false);
-  const [showTvShows, setShowTvShows] = useState<boolean>(true);
+  const { tvShowsButton } = useSelector(
+    (state: any) => state.buttonsStore
+  );
+
+  const { movieButton } = useSelector(
+    (state: any) => state.buttonsStore
+  );
 
   const [topTenTv, setTopTenTv] = useState<ITopTenTvShow[] | null>(null);
   const [topTenMovie, setTopTenMovie] = useState<ITopTenMovie[] | null>(null);
@@ -65,7 +71,7 @@ function Home() {
 
   useEffect(() => {
     storeSearchTerm.length > 2 && handleSearch();
-  }, [showTvShows]);
+  }, [tvShowsButton]);
 
   const getTopTvShows = (): void => {
     dispatch(setLoader(true));
@@ -88,20 +94,20 @@ function Home() {
   };
 
   const handleMovieClick = (): void => {
-    setShowTvShows(false);
-    setShowMovies(true);
+    dispatch(setTvShowsButton(false));
+    dispatch(setMovieButton(true));
   };
 
   const handleTvShowsClick = (): void => {
-    setShowMovies(false);
-    setShowTvShows(true);
+    dispatch(setMovieButton(false));
+    dispatch(setTvShowsButton(true));
   };
 
   const handleSearch = (): void => {
-    if(showTvShows){
+    if(tvShowsButton){
       return searchTvShows();
     }
-    if(showMovies){
+    if(movieButton){
       return searchMovies();
     }
   }
@@ -149,14 +155,14 @@ function Home() {
       />
 
       <div className="home-btns">
-        <button className={`btn movie ${showMovies && "active"}`} onClick={handleMovieClick} > movies </button>
+        <button className={`btn movie ${movieButton && "active"}`} onClick={handleMovieClick} > movies </button>
         <button className={`top ${storeSearchTerm.length > 2 ? "hide-top animate__animated animate__zoomOut" : null }`}> Top 10 </button>
-        <button className={`btn tv ${showTvShows && "active"}`} onClick={handleTvShowsClick} > TV Shows </button>
+        <button className={`btn tv ${tvShowsButton && "active"}`} onClick={handleTvShowsClick} > TV Shows </button>
       </div>
 
 
       {
-        showTvShows && storeSearchTerm.length < 3 ?
+        tvShowsButton && storeSearchTerm.length < 3 ?
         <div className="home-content">
           {
             topTenTv ? 
@@ -171,7 +177,7 @@ function Home() {
       }
 
       {
-        showMovies && storeSearchTerm.length < 3 ?
+        movieButton && storeSearchTerm.length < 3 ?
         <div className="home-content">
           {
             topTenMovie ? 
@@ -187,7 +193,7 @@ function Home() {
       }
 
       {
-        showTvShows && searchedItems && storeSearchTerm.length >= 3 ?
+        tvShowsButton && searchedItems && storeSearchTerm.length >= 3 ?
         <div className="home-content">
           {
             searchedItems ? 
@@ -203,7 +209,7 @@ function Home() {
       }
 
       {
-        showMovies && searchedItems && storeSearchTerm.length >= 3 ?
+        movieButton && searchedItems && storeSearchTerm.length >= 3 ?
         <div className="home-content">
           {
             searchedItems ? 
