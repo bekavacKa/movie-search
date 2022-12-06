@@ -2,18 +2,19 @@
 @import '../../Assets/scss/mixins.scss';
 
 .card-info{
+    @include my-flex(center, column, center);
     background-color: $secondBackColor;
-    box-shadow: 0 0 2px 3px $firstFontColor;
+    box-shadow: 0 0 7px 1px $firstFontColor;
     width: 280px;
     padding: 0;
     border-radius: 5px;
     transition: $transition;
+    color: $firstBackColor;
     cursor: pointer;
     &:hover{
-        box-shadow: 0 0 3px 4px $firstFontColor;
-        transform: scale(1.02);
+        box-shadow: 0 0 7px 2px $firstFontColor;
+        transform: scale(1.01);
     }
-    @include my-flex(space-between, column, center);
     .card-info-image{
         width: 100%;
         @include my-flex(center, column, center);
@@ -22,10 +23,39 @@
             border-radius: 5px 5px 0 0;
         }
     }
-    .card-info-title{
-        padding: 15px 5px;
-        h2{
+    .card-info-more{
+        @include my-flex(center, column, center);
+        padding: 35px 5px 25px;
+        width: 100%;
+        flex: 1;
+        position: relative;
+        background: linear-gradient(rgba(239, 215, 187, 1), rgba(239, 215, 187, 1), rgba(239, 215, 187, .3));
+        .card-info-more-average{
+            @include my-flex(center, column, center);
+            position: absolute;
+            background: linear-gradient(rgba(239, 215, 187, .5), rgba(239, 215, 187, 1), rgba(239, 215, 187, 1));
+            box-shadow: 0 0 3px 2px $firstFontColor;
+            top: -30px;
+            height: 65px;
+            width: 65px;
+            border-radius: 50%;
+            font-weight: 900;
+            text-shadow: 1px 1px 1px black;
+            font-size: 1.5rem;
+            letter-spacing: .1rem;
+            &.bad-av{
+                color: red;
+            }
+            &.good-av{
+                color: orange;
+            }
+            &.super-av{
+                color: rgb(4, 168, 4);
+            }
+        }
+        .card-info-more-title{
             text-transform: uppercase;
+            text-align: center;
         }
     }
 }

@@ -22,9 +22,23 @@ interface Props {
 }
 
 const imagePath: string = `https://www.themoviedb.org/t/p/w220_and_h330_face/`;
-const noImage: string = `https://t3.ftcdn.net/jpg/00/36/94/26/360_F_36942622_9SUXpSuE5JlfxLFKB1jHu5Z07eVIWQ2W.jpg`;
+const noImage: string = `https://static8.depositphotos.com/1009634/988/v/600/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg`;
 
 const CardInfo : FC<Props> = ({name, vote_average, title, backdrop_path, poster_path, id}) => {
+
+  const handleAverage = () => {
+    if(vote_average){
+      if(4.5 > vote_average){
+        return "bad-av"
+      }
+      if(7.5 > vote_average){
+        return "good-av"
+      }
+      if(10 > vote_average){
+        return "super-av"
+      }
+    }
+  }
 
   return (
   <>
@@ -39,10 +53,21 @@ const CardInfo : FC<Props> = ({name, vote_average, title, backdrop_path, poster_
             
           }
         </div>
-        {vote_average}
-        <div className='card-info-title'>
-            <h2>{name || title}</h2>        
+        
+        <div className='card-info-more'>
+          {
+            vote_average ? 
+            <div className={`card-info-more-average ${handleAverage()}`}>
+              <span>
+                {vote_average}
+              </span>
+            </div>
+            :
+            null
+          }
+          <h2 className='card-info-more-title'>{name || title}</h2> 
         </div>
+        
     </Link>
   </>
   )

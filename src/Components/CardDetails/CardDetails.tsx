@@ -41,6 +41,7 @@ interface IDetails {
 }
 
 const imagePath: string = `https://www.themoviedb.org/t/p/w220_and_h330_face/`;
+// const 
 
 const CardDetails: FC = () => {
   const params = useParams();
@@ -111,6 +112,14 @@ const CardDetails: FC = () => {
         <div className="card-details-title">
           <h2>{details?.name || details?.original_title}</h2>
         </div>
+
+        {/* {
+          details?.imdb_id &&
+          <video width="400" controls>
+            <source src="https://www.youtube.com/watch?v=kQEtor8MvqI&t=128s&ab_channel=CroatiaRecords" type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+        } */}
 
         <div className="card-details-overview">
           <p>{details?.overview}</p>

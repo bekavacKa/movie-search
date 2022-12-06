@@ -11,6 +11,8 @@
         flex: 1;
         @include my-flex(center, column, center);
         img{
+            border-radius: 5px;
+            box-shadow: 0 0 7px 1px $firstFontColor;
             width: 70%;
         }
     }

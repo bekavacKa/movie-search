@@ -7,6 +7,7 @@ import { setStoreSearchTerm } from "../../Redux/searchTermSlice";
 import { setMovieButton, setTvShowsButton } from "../../Redux/buttonsSlice";
 import MovieTvService from "../../Services/MovieTvService";
 import { setLoader } from "../../Redux/loaderSlice";
+import { FaRegFrown } from "react-icons/fa";
 
 interface ITopTenTvShow {
   backdrop_path: string;
@@ -140,8 +141,11 @@ function Home() {
 
   const noResultsMsgLayout = () => {
     return (
-      <div className="home-content">
-        <p className="home-content-no-results"> Sorry we didn't find anything, please try something else! </p>
+      <div className="home-content-no-results">
+        <FaRegFrown className="no-results-icon" />
+        <p> 
+          Sorry we didn't find anything, try something else or switch buttons! 
+        </p>
       </div>
     );
   }
@@ -149,7 +153,7 @@ function Home() {
   return (
     <div className="home">
       <div className="home-title">
-        <h2>Find your favorite movies or TV shows</h2>
+        <h2>Find movies / TV shows</h2>
       </div>
 
       <input

@@ -9,7 +9,7 @@
             text-transform: uppercase;
             letter-spacing: .2rem;
             font-family: $secondFontF;
-            font-size: 2.5rem;
+            font-size: 3rem;
             text-shadow: 0 0 8px black;
         }
     }
@@ -19,6 +19,7 @@
         background-color: $firstFontColor;
         width: 250px;
         border-radius: 10px;
+        padding: 10px;
         &::placeholder{
             color: $firstBackColor;
             text-align: center;
@@ -31,11 +32,9 @@
             width: 250px;
             &.movie{
                 border-radius: 15px 0 0 15px ;
-                // border-right: none;
             }
             &.tv{
                 border-radius: 0 15px 15px 0;
-                // border-left: none;
             }
             &.active{
                 background-color: $thirdBackColor;
@@ -64,10 +63,19 @@
         }
     }
     .home-content{
-        // background-color: red;
         width: 100%;
         margin: 20px 0;
         @include my-flex(space-evenly, row, normal);
         gap: 30px;
+        .home-content-no-results{
+            @include my-flex(center, column, center);
+            .no-results-icon{
+                font-size: 5rem;
+                margin: 20px 30px 30px;
+            }
+            p{
+                font-size: 1.5rem;
+            }
+        }
     }
 }

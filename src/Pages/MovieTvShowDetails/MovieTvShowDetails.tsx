@@ -14,7 +14,9 @@ function MovieTvShowDetails() {
             <span className='details-back-span'> BACK </span>
         </Link>
 
-        <CardDetails />
+        <div className='details-content'>
+          <CardDetails />
+        </div>
 
     </div>
   )

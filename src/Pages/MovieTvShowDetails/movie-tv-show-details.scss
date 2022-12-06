@@ -6,6 +6,7 @@
     // padding: 25px 50px;
     @include my-flex(center, column, center);
     .details-back{
+        @include my-container;
         // background-color: blue;
         padding: 30px 5px;
         @include my-flex(flex-start, row, center);
@@ -13,7 +14,7 @@
         transition: $transition;
         cursor: pointer;
         &:hover{
-            transform: scale(1.05);
+            transform: scale(1.01);
         }
         .details-back-icon{
             font-size: 2rem;
@@ -23,21 +24,7 @@
             font-size: 1.2rem;
         }
     }
-    .details-image{
-        @include my-flex(center, column, center);
-        img{
-            width: 100%;
-        }
-    }
-    .details-title{
-        padding: 30px;
-        text-transform: uppercase;
-        font-size: 1.5rem;
-        letter-spacing: .3rem;
-    }
-    .details-description{
-        padding: 10px;
-        font-size: 1.2rem;
-        line-height: 1.3rem;
+    .details-content{
+        width: 100%;
     }
 }
