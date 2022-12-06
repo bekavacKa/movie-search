@@ -27,6 +27,8 @@ const noImage: string = `https://t3.ftcdn.net/jpg/00/36/94/26/360_F_36942622_9SU
 const CardInfo : FC<Props> = ({name, vote_average, title, backdrop_path, poster_path, id}) => {
 
   return (
+  <>
+      {/* {console.log(id , " => ", name, " => ",  title)} */}
     <Link to={`/details/${id}`} className='card-info'>
         <div className='card-info-image'>
           {
@@ -42,6 +44,7 @@ const CardInfo : FC<Props> = ({name, vote_average, title, backdrop_path, poster_
             <h2>{name || title}</h2>        
         </div>
     </Link>
+  </>
   )
 }
 

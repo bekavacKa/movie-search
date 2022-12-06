@@ -2,5 +2,33 @@
 @import '../../Assets/scss/variables.scss';
 
 .card-details{
-    @include my-flex(center, column, center);
+    @include my-flex(center, row, normal);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px;
+    .card-details-image{
+        flex: 1;
+        @include my-flex(center, column, center);
+        img{
+            width: 70%;
+        }
+    }
+    .card-details-info{
+        flex: 2;
+        @include my-flex(flex-start, column, normal);
+        .card-details-title{
+            text-transform: capitalize;
+            margin-bottom: 30px;
+            letter-spacing: .1rem;
+            h2{
+                font-size: 2rem;
+            }
+        }
+        .card-details-overview{
+            font-size: 1.2rem;
+            letter-spacing: .1rem;
+            line-height: 1.5rem;
+        }
+    }
 }

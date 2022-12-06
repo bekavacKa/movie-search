@@ -9,9 +9,9 @@
 }
 
 @mixin my-container{
-    width: 80%;
+    width: 90%;
     margin: auto;
-    padding: 50px;
+    padding: 50px 25px;
 }
 
 @mixin my-input-style {

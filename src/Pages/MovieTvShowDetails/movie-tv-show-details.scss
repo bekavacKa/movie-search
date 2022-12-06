@@ -3,8 +3,7 @@
 
 .movie-tv-show-details{
     // background-color: $secondBackColor;
-    @include my-container;
-    padding: 25px 50px;
+    // padding: 25px 50px;
     @include my-flex(center, column, center);
     .details-back{
         // background-color: blue;

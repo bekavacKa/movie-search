@@ -138,6 +138,14 @@ function Home() {
                   .finally(() => dispatch(setLoader(false)));
   }
 
+  const noResultsMsgLayout = () => {
+    return (
+      <div className="home-content">
+        <p className="home-content-no-results"> Sorry we didn't find anything, please try something else! </p>
+      </div>
+    );
+  }
+
   return (
     <div className="home">
       <div className="home-title">
@@ -196,12 +204,12 @@ function Home() {
         tvShowsButton && searchedItems && storeSearchTerm.length >= 3 ?
         <div className="home-content">
           {
-            searchedItems ? 
+            searchedItems && searchedItems.length > 0 ? 
             searchedItems.map((item: ITopTenMovie, index) => {
               return <CardInfo {...item} key={index}/>
             })
             :
-            null
+            noResultsMsgLayout()
           }
         </div>
         :
@@ -212,12 +220,12 @@ function Home() {
         movieButton && searchedItems && storeSearchTerm.length >= 3 ?
         <div className="home-content">
           {
-            searchedItems ? 
+            searchedItems && searchedItems.length > 0 ? 
             searchedItems.map((item: ITopTenMovie, index) => {
               return <CardInfo {...item} key={index}/>
             })
             :
-            null
+            noResultsMsgLayout()
           }
         </div>
         :

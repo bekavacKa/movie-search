@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { setLoader } from "../../Redux/loaderSlice";
@@ -28,6 +29,15 @@ interface IDetails {
   type: string;
   vote_average: number;
   vote_count: number;
+
+  budget: number;
+  imdb_id: string;
+  original_title: string;
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  title: string;
+  video: boolean;
 }
 
 const imagePath: string = `https://www.themoviedb.org/t/p/w220_and_h330_face/`;
@@ -37,6 +47,9 @@ const CardDetails: FC = () => {
   const id = Number(params.id);
   const dispatch = useDispatch();
 
+  const { tvShowsButton } = useSelector((state: any) => state.buttonsStore);
+  const { movieButton } = useSelector((state: any) => state.buttonsStore);
+
   const [details, setDetails] =  useState<IDetails | null>(null);
   const [errMsg, setErrMsg] = useState<string>("")
 
@@ -45,10 +58,20 @@ const CardDetails: FC = () => {
   }, []);
 
   const getDetails = () => {
+    // console.log(id);
+    if (tvShowsButton){
+      return tvShowsDetails();
+    }
+    if(movieButton){
+      return movieDetails();
+    }
+  };
+
+  const tvShowsDetails = (): void => {
     dispatch(setLoader(true));
     MovieTvService.getTvShowDetails(id)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setDetails(res.data);
       })
       .catch((err) => {
@@ -56,34 +79,49 @@ const CardDetails: FC = () => {
         err.message && setErrMsg(err.message);
       })
       .finally(() => dispatch(setLoader(false)));
-  };
+  }
+
+  const movieDetails = (): void => {
+    dispatch(setLoader(true));
+    MovieTvService.getMovieDetails(id)
+                  .then((res) => {
+                    console.log(res.data);
+                    setDetails(res.data);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    err.message && setErrMsg(err.message);
+                  })
+                  .finally(() => dispatch(setLoader(false)));
+  }
 
   return (
-    <div className="card-details">
+    <div className="card-details" style={{backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(${imagePath + details?.backdrop_path})`}}>
 
       <div className="card-details-image">
         {
-          details?.poster_path &&
+          details?.poster_path ?
           <img src={`${imagePath + details?.poster_path}`} alt={details?.name} />
-        }
-        {
-          details?.backdrop_path &&
+          :
           <img src={`${imagePath + details?.backdrop_path}`} alt={details?.name} />
         }
       </div>
 
-      <div className="card-details-title">
-        <h2>{details?.name}</h2>
+      <div className="card-details-info">
+        <div className="card-details-title">
+          <h2>{details?.name || details?.original_title}</h2>
+        </div>
+
+        <div className="card-details-overview">
+          <p>{details?.overview}</p>
+        </div>
       </div>
 
-      <div className="card-details-title">
-        <p>{details?.overview}</p>
-      </div>
 
       {
         errMsg &&
         <div className="card-details-err">
-          <h2>{errMsg}</h2>
+          <p>Sorry, we did not find any details for the selected TV show / movie!</p>
         </div>
       }
     </div>
