@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test 1`] = `
+<div
+  className="home"
+>
+  <div
+    className="home-title"
+  >
+    <h2>
+      Find movies / TV shows
+    </h2>
+  </div>
+  <input
+    className="home-search"
+    onChange={[Function]}
+    placeholder="Search Movie"
+    type="search"
+  />
+  <div
+    className="home-btns"
+  >
+    <button
+      className="btn movie false"
+      onClick={[Function]}
+    >
+       movies 
+    </button>
+    <button
+      className="top null"
+    >
+       Top 10 
+    </button>
+    <button
+      className="btn tv active"
+      onClick={[Function]}
+    >
+       TV Shows 
+    </button>
+  </div>
+</div>
+`;

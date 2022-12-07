@@ -58,15 +58,17 @@ function Home() {
   const [topTenTv, setTopTenTv] = useState<ITopTenTvShow[] | null>(null);
   const [topTenMovie, setTopTenMovie] = useState<ITopTenMovie[] | null>(null);
 
-  const [searchedItems, setSearchedItems] = useState<ITopTenMovie[] | null>(null);;
+  const [searchedItems, setSearchedItems] = useState<ITopTenMovie[] | null>(null);
 
   useEffect(() => {
     getTopTvShows();
     getTopMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     storeSearchTerm.length > 2 && handleSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tvShowsButton, storeSearchTerm]);
 
   const getTopTvShows = (): void => {
@@ -167,13 +169,13 @@ function Home() {
 
       <div className="home-btns">
         <button className={`btn movie ${movieButton && "active"}`} onClick={handleMovieClick} > movies </button>
-        <button className={`top ${storeSearchTerm.length > 2 ? "hide-top animate__animated animate__zoomOut" : null }`}> Top 10 </button>
+        <button className={`top ${storeSearchTerm?.length > 2 ? "hide-top animate__animated animate__zoomOut" : null }`}> Top 10 </button>
         <button className={`btn tv ${tvShowsButton && "active"}`} onClick={handleTvShowsClick} > TV Shows </button>
       </div>
 
 
       {
-        tvShowsButton && storeSearchTerm.length < 3 ?
+        tvShowsButton && storeSearchTerm?.length < 3 ?
         <div className="home-content">
           {
             topTenTv ? 
@@ -188,7 +190,7 @@ function Home() {
       }
 
       {
-        movieButton && storeSearchTerm.length < 3 ?
+        movieButton && storeSearchTerm?.length < 3 ?
         <div className="home-content">
           {
             topTenMovie ? 
@@ -204,10 +206,10 @@ function Home() {
       }
 
       {
-        tvShowsButton && searchedItems && storeSearchTerm.length >= 3 ?
+        tvShowsButton && searchedItems && storeSearchTerm?.length >= 3 ?
         <div className="home-content">
           {
-            searchedItems && searchedItems.length > 0 ? 
+            searchedItems && searchedItems?.length > 0 ? 
             searchedItems.map((item: ITopTenMovie, index) => {
               return <CardInfo {...item} key={index}/>
             })
@@ -220,7 +222,7 @@ function Home() {
       }
 
       {
-        movieButton && searchedItems && storeSearchTerm.length >= 3 ?
+        movieButton && searchedItems && storeSearchTerm?.length >= 3 ?
         <div className="home-content">
           {
             searchedItems && searchedItems.length > 0 ? 

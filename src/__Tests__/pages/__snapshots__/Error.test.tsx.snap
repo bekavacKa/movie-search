@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test 1`] = `
+<div
+  className="error"
+>
+  <h2>
+    ERROR
+  </h2>
+  <p>
+    We can't find the page, or it doesn't exist !
+  </p>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <button
+      className="error-btn"
+    >
+      Back to 
+      Home
+    </button>
+  </a>
+</div>
+`;

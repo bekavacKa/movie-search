@@ -56,6 +56,7 @@ const CardDetails: FC = () => {
 
   useEffect(() => {
     getDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getDetails = () => {

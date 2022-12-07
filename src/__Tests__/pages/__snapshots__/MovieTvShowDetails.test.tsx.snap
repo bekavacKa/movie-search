@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test 1`] = `
+<div
+  className="movie-tv-show-details"
+>
+  <a
+    className="details-back"
+    href="/"
+    onClick={[Function]}
+  >
+    <svg
+      className="details-back-icon"
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 256 512"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
+      />
+    </svg>
+    <span
+      className="details-back-span"
+    >
+       BACK 
+    </span>
+  </a>
+  <div
+    className="details-content"
+  >
+    <div
+      className="card-details"
+      style={
+        {
+          "backgroundImage": "linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(https://www.themoviedb.org/t/p/w220_and_h330_face/undefined)",
+        }
+      }
+    >
+      <div
+        className="card-details-image"
+      >
+        <img
+          src="https://www.themoviedb.org/t/p/w220_and_h330_face/undefined"
+        />
+      </div>
+      <div
+        className="card-details-info"
+      >
+        <div
+          className="card-details-title"
+        >
+          <h2 />
+        </div>
+        <div
+          className="card-details-overview"
+        >
+          <p />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

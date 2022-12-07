@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux';
 import './loader.scss';
 
 function Loader() {
-
-
   const { loading } = useSelector((state: any) => state.loaderStore);
-
   return (
     <>
         {
