@@ -1,0 +1,24 @@
+@import '../../Assets/scss/mixins.scss';
+@import '../../Assets/scss/variables.scss';
+
+.error{
+    height: 100vh;
+    @include my-flex(center, column, center );
+    h2{
+        font-size: 4rem;
+        margin-bottom: 30px;
+    }
+    p{
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    .error-btn{
+        @include my-btn-style;
+        background-color: $firstFontColor;
+        color: $secondBackColor;
+        font-weight: 500;
+        &:hover{
+            color: $firstFontColor;
+        }
+    }
+}

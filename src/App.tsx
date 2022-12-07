@@ -7,6 +7,7 @@ import routes from './Config/routes';
 import Home from './Pages/Home/Home';
 import MovieTvShowDetails from './Pages/MovieTvShowDetails/MovieTvShowDetails';
 import { store } from './Redux/store';
+import Error from './Pages/Error/Error';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path={routes.HOME.url} element={<Home />} />
             <Route path={routes.DETAILS.url} element={<MovieTvShowDetails />} />
+            <Route path='*' element={<Error/>} />
           </Routes>
         </BrowserRouter>
         

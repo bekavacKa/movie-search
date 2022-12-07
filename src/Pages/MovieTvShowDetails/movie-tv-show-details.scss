@@ -28,3 +28,27 @@
         width: 100%;
     }
 }
+
+@media only screen and (max-width: 319px) {
+    .movie-tv-show-details{
+        .details-back{
+            padding: 10px 5px;
+        }
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px){
+    .movie-tv-show-details{
+        .details-back{
+            padding: 15px 5px;
+        }
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+    .movie-tv-show-details{
+        .details-back{
+            padding: 20px 5px;
+        }
+    }
+}
