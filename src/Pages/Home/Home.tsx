@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import  debounce  from "lodash.debounce";
 import "./home.scss";
 import CardInfo from "../../Components/CardInfo/CardInfo";
 import { useSelector } from "react-redux";
@@ -65,14 +66,8 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    storeSearchTerm.length > 2 && setTimeout(()=> {
-      handleSearch();
-    }, 1000);
-  }, [storeSearchTerm]);
-
-  useEffect(() => {
     storeSearchTerm.length > 2 && handleSearch();
-  }, [tvShowsButton]);
+  }, [tvShowsButton, storeSearchTerm]);
 
   const getTopTvShows = (): void => {
     dispatch(setLoader(true));
@@ -103,6 +98,12 @@ function Home() {
     dispatch(setMovieButton(false));
     dispatch(setTvShowsButton(true));
   };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setStoreSearchTerm(e.target.value))
+  }
+
+  const debouncedSearch = debounce(handleSearchChange, 1000);
 
   const handleSearch = (): void => {
     if(tvShowsButton){
@@ -161,9 +162,7 @@ function Home() {
         placeholder="Search Movie"
         className="home-search"
         defaultValue={storeSearchTerm}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          dispatch(setStoreSearchTerm(e.target.value))
-        }
+        onChange={debouncedSearch}
       />
 
       <div className="home-btns">

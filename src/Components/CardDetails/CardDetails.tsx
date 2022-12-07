@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { FaFilm, FaImdb } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
@@ -41,7 +42,6 @@ interface IDetails {
 }
 
 const imagePath: string = `https://www.themoviedb.org/t/p/w220_and_h330_face/`;
-// const 
 
 const CardDetails: FC = () => {
   const params = useParams();
@@ -72,7 +72,7 @@ const CardDetails: FC = () => {
     dispatch(setLoader(true));
     MovieTvService.getTvShowDetails(id)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setDetails(res.data);
       })
       .catch((err) => {
@@ -86,7 +86,7 @@ const CardDetails: FC = () => {
     dispatch(setLoader(true));
     MovieTvService.getMovieDetails(id)
                   .then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     setDetails(res.data);
                   })
                   .catch((err) => {
@@ -99,31 +99,56 @@ const CardDetails: FC = () => {
   return (
     <div className="card-details" style={{backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(${imagePath + details?.backdrop_path})`}}>
 
-      <div className="card-details-image">
+
+      {
+        details?.homepage ?
+        <div className="card-details-image">
         {
           details?.poster_path ?
-          <img src={`${imagePath + details?.poster_path}`} alt={details?.name} />
+          <a className="image-homepage" href={details?.homepage} target="_blank" rel="noopener noreferrer">
+            <img src={`${imagePath + details?.poster_path}`} alt={details?.name} />
+          </a>
           :
-          <img src={`${imagePath + details?.backdrop_path}`} alt={details?.name} />
+          <a className="image-homepage" href={details?.homepage} target="_blank" rel="noopener noreferrer">
+            <img src={`${imagePath + details?.backdrop_path}`} alt={details?.name} />
+          </a>
         }
-      </div>
+        </div>
+        :
+        <div className="card-details-image">
+          {
+            details?.poster_path ?
+            <img src={`${imagePath + details?.poster_path}`} alt={details?.name} />
+            :
+            <img src={`${imagePath + details?.backdrop_path}`} alt={details?.name} />
+          }
+        </div>
+      }
 
       <div className="card-details-info">
         <div className="card-details-title">
           <h2>{details?.name || details?.original_title}</h2>
+          {
+            details?.imdb_id &&
+            <a className="title-icon" href={`https://www.imdb.com/title/${details?.imdb_id}/?ref_=vp_vi_tt`} target="_blank" rel="noopener noreferrer">
+              <FaImdb className="imdb" />
+            </a>
+          }
         </div>
 
-        {/* {
+        {
           details?.imdb_id &&
-          <video width="400" controls>
-            <source src="https://www.youtube.com/watch?v=kQEtor8MvqI&t=128s&ab_channel=CroatiaRecords" type="video/mp4" />
-            Your browser does not support HTML video.
-          </video>
-        } */}
+          <a className="card-details-video" href={`https://www.imdb.com/video/vi1348706585/?playlistId=${details?.imdb_id}&ref_=tt_ov_vi`} target="_blank" rel="noopener noreferrer">
+            <FaFilm className="video-icon" />
+            <p>thriller</p>
+          </a>
+        }
 
         <div className="card-details-overview">
           <p>{details?.overview}</p>
         </div>
+
+
       </div>
 
 

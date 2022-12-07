@@ -15,22 +15,63 @@
             box-shadow: 0 0 7px 1px $firstFontColor;
             width: 70%;
         }
+        .image-homepage{
+            width: 70%;
+            @include my-flex(center, column, center);
+            transition: $transition;
+            cursor: pointer;
+            img{
+                border-radius: 5px;
+                box-shadow: 0 0 7px 1px $firstFontColor;
+                width: 100%;
+            }
+            &:hover{
+                box-shadow: 0 0 7px 2px $firstFontColor;
+                transform: scale(1.01);
+            }
+        }
     }
     .card-details-info{
         flex: 2;
         @include my-flex(flex-start, column, normal);
         .card-details-title{
+            @include my-flex(flex-start, row, center);
             text-transform: capitalize;
             margin-bottom: 30px;
             letter-spacing: .1rem;
             h2{
                 font-size: 2rem;
             }
+            .title-icon{
+                @include my-flex(flex-start, row, center);
+                margin: 0 20px;
+                .imdb{
+                    font-size: 2rem;
+                    color: yellow;
+                }
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
         }
         .card-details-overview{
             font-size: 1.2rem;
             letter-spacing: .1rem;
             line-height: 1.5rem;
+        }
+        .card-details-video{
+            @include my-flex(flex-start, row, center);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            .video-icon{
+                font-size: 1.2rem;
+                margin-right: 20px;
+                transition: $transition;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
         }
     }
 }
@@ -45,12 +86,26 @@
             img{
                 width: 100%;
             }
+            .image-homepage{
+                width: 100%;
+                @include my-flex(center, column, center);
+                img{
+                    border-radius: 5px;
+                    box-shadow: 0 0 7px 1px $firstFontColor;
+                    width: 100%;
+                }
+            }
         }
         .card-details-info{
             flex: 1;
+            @include my-flex(center, column, center);
             text-align: center;
             .card-details-title{
                 margin: 30px 0;
+                @include my-flex(center, column, center);
+                .title-icon{
+                    margin-top: 10px;
+                }
                 h2{
                     font-size: 2rem;
                 }
@@ -73,12 +128,26 @@
             img{
                 width: 100%;
             }
+            .image-homepage{
+                width: 100%;
+                @include my-flex(center, column, center);
+                img{
+                    border-radius: 5px;
+                    box-shadow: 0 0 7px 1px $firstFontColor;
+                    width: 100%;
+                }
+            }
         }
         .card-details-info{
             flex: 1;
+            @include my-flex(center, column, center);
             text-align: center;
             .card-details-title{
                 margin: 30px 0;
+                @include my-flex(center, column, center);
+                .title-icon{
+                    margin-top: 10px;
+                }
                 h2{
                     font-size: 2rem;
                 }
@@ -98,6 +167,15 @@
         .card-details-image{
             img{
                 width: 80%;
+            }
+            .image-homepage{
+                width: 80%;
+                @include my-flex(center, column, center);
+                img{
+                    border-radius: 5px;
+                    box-shadow: 0 0 7px 1px $firstFontColor;
+                    width: 100%;
+                }
             }
         }
     }

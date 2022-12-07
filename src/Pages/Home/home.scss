@@ -112,8 +112,7 @@
                     border-radius: 0 0 15px 15px ;
                 }
                 &:hover{
-                    background-color: transparent;
-                    color: $firstFontColor;
+                    background-color: $thirdBackColor;
                 }
             }
             .top{
@@ -166,7 +165,7 @@
                     border-radius: 0 0 15px 15px ;
                 }
                 &:hover{
-                    color: $firstFontColor;
+                    background-color: $thirdBackColor;
                 }
             }
             .top{
